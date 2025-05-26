@@ -691,6 +691,9 @@ function showArticleWizardUI(productData) {
   // Get user settings
   chrome.storage.sync.get(['settings'], (result) => {
     const settings = result.settings || {};
+    const defaultArticleType = settings.defaultArticleType || 'product-review';
+    const defaultWordCount = settings.defaultWordCount || '2000-3000';
+    const defaultTone = settings.defaultArticleTone || 'Professional';
     
     // Show article wizard UI
     contentElement.innerHTML = `
@@ -700,32 +703,32 @@ function showArticleWizardUI(productData) {
           <div class="ai-affiliate-form-group">
             <label for="article-type">Article Type</label>
             <select id="article-type" name="articleType">
-              <option value="product-review">Product Review</option>
-              <option value="comparison">Product Comparison</option>
-              <option value="buying-guide">Buying Guide</option>
-              <option value="how-to">How-To Guide</option>
-              <option value="top-10">Top 10 List</option>
-              <option value="problem-solution">Problem-Solution</option>
+              <option value="product-review" ${defaultArticleType === 'product-review' ? 'selected' : ''}>Product Review</option>
+              <option value="comparison" ${defaultArticleType === 'comparison' ? 'selected' : ''}>Product Comparison</option>
+              <option value="buying-guide" ${defaultArticleType === 'buying-guide' ? 'selected' : ''}>Buying Guide</option>
+              <option value="how-to" ${defaultArticleType === 'how-to' ? 'selected' : ''}>How-To Guide</option>
+              <option value="top-10" ${defaultArticleType === 'top-10' ? 'selected' : ''}>Top 10 List</option>
+              <option value="problem-solution" ${defaultArticleType === 'problem-solution' ? 'selected' : ''}>Problem-Solution</option>
             </select>
           </div>
           <div class="ai-affiliate-form-group">
             <label for="word-count">Word Count</label>
             <select id="word-count" name="wordCount">
-              <option value="1000-1500">1,000-1,500 words</option>
-              <option value="1500-2000">1,500-2,000 words</option>
-              <option value="2000-3000" selected>2,000-3,000 words</option>
-              <option value="3000-4000">3,000-4,000 words</option>
-              <option value="4000-5000">4,000-5,000 words</option>
+              <option value="1000-1500" ${defaultWordCount === '1000-1500' ? 'selected' : ''}>1,000-1,500 words</option>
+              <option value="1500-2000" ${defaultWordCount === '1500-2000' ? 'selected' : ''}>1,500-2,000 words</option>
+              <option value="2000-3000" ${defaultWordCount === '2000-3000' ? 'selected' : ''}>2,000-3,000 words</option>
+              <option value="3000-4000" ${defaultWordCount === '3000-4000' ? 'selected' : ''}>3,000-4,000 words</option>
+              <option value="4000-5000" ${defaultWordCount === '4000-5000' ? 'selected' : ''}>4,000-5,000 words</option>
             </select>
           </div>
           <div class="ai-affiliate-form-group">
             <label for="article-tone">Tone</label>
             <select id="article-tone" name="tone">
-              <option value="Professional">Professional</option>
-              <option value="Conversational">Conversational</option>
-              <option value="Enthusiastic">Enthusiastic</option>
-              <option value="Informative">Informative</option>
-              <option value="Persuasive">Persuasive</option>
+              <option value="Professional" ${defaultTone === 'Professional' ? 'selected' : ''}>Professional</option>
+              <option value="Conversational" ${defaultTone === 'Conversational' ? 'selected' : ''}>Conversational</option>
+              <option value="Enthusiastic" ${defaultTone === 'Enthusiastic' ? 'selected' : ''}>Enthusiastic</option>
+              <option value="Informative" ${defaultTone === 'Informative' ? 'selected' : ''}>Informative</option>
+              <option value="Persuasive" ${defaultTone === 'Persuasive' ? 'selected' : ''}>Persuasive</option>
             </select>
           </div>
           <div class="ai-affiliate-form-group">
@@ -739,6 +742,12 @@ function showArticleWizardUI(productData) {
         </div>
       </div>
     `;
+    
+    // Add active class to make wizard visible
+    const wizardElement = contentElement.querySelector('.ai-affiliate-wizard');
+    if (wizardElement) {
+      wizardElement.classList.add('active');
+    }
     
     // Add event listeners for buttons
     document.getElementById('ai-affiliate-generate').addEventListener('click', () => {

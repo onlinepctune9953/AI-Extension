@@ -34,8 +34,8 @@
   bottom: 90px;
   right: 20px;
   width: 350px;
-  height: 800px; /* Fixed height instead of max-height */
-  min-height: 800px; /* Ensure minimum height */
+  height: 900px; /* Increased height to show all content */
+  min-height: 900px; /* Matching min-height */
   max-height: none; /* Remove max-height constraint */
   background-color: white;
   border-radius: 10px;
@@ -82,7 +82,7 @@
   padding: 15px;
   overflow-y: auto;
   flex-grow: 1;
-  min-height: 600px; /* Ensure content area has substantial height */
+  min-height: 700px; /* Increased to ensure all content is visible */
 }
 
 .ai-affiliate-product-info {
@@ -194,6 +194,7 @@
 .ai-affiliate-wizard {
   display: none;
   min-height: 500px; /* Ensure wizard has substantial height */
+  padding: 20px;
 }
 
 .ai-affiliate-wizard.active {
@@ -312,6 +313,50 @@
 .ai-affiliate-checkbox-label {
   font-size: 14px;
   color: #1f2937;
+}
+
+/* Form Groups and Elements */
+.ai-affiliate-form-group {
+  margin-bottom: 20px;
+}
+
+.ai-affiliate-form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.ai-affiliate-form-group select,
+.ai-affiliate-form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #1f2937;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.ai-affiliate-form-group select:hover,
+.ai-affiliate-form-group input:hover {
+  border-color: #1e3a8a;
+}
+
+.ai-affiliate-form-group select:focus,
+.ai-affiliate-form-group input:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+}
+
+.ai-affiliate-wizard h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
 }
 
 /* Success Message */
