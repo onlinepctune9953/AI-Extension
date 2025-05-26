@@ -681,7 +681,13 @@ function extractAboutThisItem() {
 async function expandAboutThisItem() {
   const showMoreLink = document.querySelector('#feature-bullets #showMore, .a-expander-prompt');
   if (showMoreLink) {
-    showMoreLink.click();
+    // Create and dispatch a native click event
+    const clickEvent = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true
+    });
+    showMoreLink.dispatchEvent(clickEvent);
     
     // Wait for content to expand
     return new Promise(resolve => {
